@@ -1,4 +1,4 @@
 -- 코드를 입력하세요
-SELECT animal_id
+SELECT ANIMAL_ID
 FROM ANIMAL_INS
-WHERE name is null;
+WHERE NAME is Null;
