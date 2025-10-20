@@ -1,4 +1,6 @@
 -- 코드를 입력하세요
-SELECT MIN(datetime) as 시간
+SELECT
+    DATETIME AS 시간
 FROM ANIMAL_INS
-# Where
+ORDER BY DATETIME
+LIMIT 1;
