@@ -1,0 +1,29 @@
+-- 온라인 판매 데이터 조회
+SELECT 
+    DATE_FORMAT(SALES_DATE, '%Y-%m-%d') AS SALES_DATE,
+    PRODUCT_ID,
+    USER_ID,
+    SALES_AMOUNT
+FROM 
+    ONLINE_SALE
+WHERE 
+    SALES_DATE LIKE '2022-03%'
+
+UNION ALL 
+
+-- 오프라인 판매 데이터 조회
+SELECT 
+    DATE_FORMAT(SALES_DATE, '%Y-%m-%d') AS SALES_DATE,
+    PRODUCT_ID,
+    NULL AS USER_ID, 
+    SALES_AMOUNT
+FROM 
+    OFFLINE_SALE
+WHERE 
+    SALES_DATE LIKE '2022-03%'
+
+-- 최종 통합된 결과에 대한 정렬 조건
+ORDER BY 
+    SALES_DATE ASC, 
+    PRODUCT_ID ASC, 
+    USER_ID ASC;
