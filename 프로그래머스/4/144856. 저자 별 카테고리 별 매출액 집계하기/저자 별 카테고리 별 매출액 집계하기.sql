@@ -1,0 +1,30 @@
+-- 코드를 입력하세요
+WITH BA AS (
+    SELECT
+        b.BOOK_ID,
+        b.CATEGORY,
+        b.AUTHOR_ID,
+        b.PRICE,
+        a.AUTHOR_NAME
+    FROM BOOK b
+    INNER JOIN AUTHOR a ON b.AUTHOR_ID = a.AUTHOR_ID
+)
+
+SELECT
+    b.AUTHOR_ID,
+    b.AUTHOR_NAME,
+    b.CATEGORY,
+    SUM(b.PRICE * s.SALES) AS TOTAL_SALES
+FROM
+    BA b
+INNER JOIN
+    BOOK_SALES s ON b.BOOK_ID = s.BOOK_ID
+WHERE
+    s.SALES_DATE LIKE '2022-01%'
+GROUP BY
+    b.AUTHOR_ID,
+    b.AUTHOR_NAME,
+    b.CATEGORY
+ORDER BY
+    b.AUTHOR_ID ASC,
+    b.CATEGORY DESC;
