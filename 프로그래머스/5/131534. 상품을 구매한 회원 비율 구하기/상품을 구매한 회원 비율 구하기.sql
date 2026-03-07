@@ -1,0 +1,26 @@
+-- 코드를 입력하세요
+WITH USER_YEAR AS (
+    SELECT
+        USER_ID
+    FROM
+        USER_INFO
+    WHERE
+        YEAR(JOINED) = 2021
+)
+
+SELECT
+    YEAR(o.SALES_DATE) AS YEAR,
+    MONTH(o.SALES_DATE) AS MONTH,
+    COUNT(DISTINCT o.user_id) AS PURCHASED_USERS,
+    ROUND(COUNT(DISTINCT o.user_id) / 
+          (SELECT COUNT(*) FROM USER_YEAR), 1) AS PURCHASED_RATIO
+FROM
+    ONLINE_SALE o
+JOIN 
+    USER_YEAR u ON o.user_id = u.user_id
+GROUP BY
+    YEAR,
+    MONTH
+ORDER BY
+    YEAR,
+    MONTH;
